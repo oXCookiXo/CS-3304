@@ -1,0 +1,51 @@
+﻿.game-container {
+    float: left;
+    width: 70%;
+    height: 400px;
+    background: #263e24;
+}
+
+.login-placeholder {
+    float: left;
+    width: 100%;
+    height: 400px;
+    background: #698b6c;
+}
+
+.game-player-container {
+    float: left;
+    width: 30%;
+    height: 400px;
+    background: #263e24;
+}
+
+.game-player-header {
+    background:#698b6c;
+    height: 30px;
+    padding: 8px 10px;
+    color: #ff006e;
+    font-size: 18px;
+}
+
+.game-player-list {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.game-list-item {
+    background: #698b6c;
+    padding-left: 10px;
+    border-bottom: 2px solid #4800ff;
+}
+
+.game-list-item-button {
+    float: right;
+    padding-left: 10px;
+    padding-top: 1px;
+}
+
+.game-list-button {
+    height: 28px;
+    font-size: 8pt;
+   
+}

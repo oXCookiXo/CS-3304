@@ -1,0 +1,87 @@
+﻿
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                @if (!Request.IsAuthenticated)
+                {
+                    <h1>@ViewBag.Message</h1>
+                }
+                else
+                {
+                    <h1>Challenge your Online Friends to a game </h1>
+                }
+            </hgroup>
+           
+            
+        </div>
+    </section>
+}
+@{
+    if (!Request.IsAuthenticated)
+    {
+<section style="background: #7ac0da; height: auto">
+    <div class="game-container">
+        <div id="grid" style="height: 400px">
+            <canvas id="gameCanvas" style="width: 100%; height: 100%"></canvas>
+        </div>
+    </div>
+ </section>
+}}
+  <section style="background: #7ac0da; height: auto">
+        
+        @{
+            if (Request.IsAuthenticated)
+            {
+                <div class="game-container">
+                    <div id="grid" style="height: 400px">
+                        <canvas id="gameCanvas" style="width: 100%; height: 100%"></canvas>
+                    </div>
+                </div>
+                <div class="game-player-container">
+                    <div class="game-player-header">Online Users</div>
+                    <div>
+                        <ul id="activeUsersList"
+                            class="game-player-list"
+                            data-bind="foreach: Users">
+                            <li class="game-list-item">
+                                <div style="height: 10px;">
+                                    <div style="float:left; padding-top: 10px">
+                                        <span data-bind="text: UserId"></span>
+                                    </div>
+                                    <div class="game-list-item-button">
+                                        <div>
+                                            <button data-bind="attr: { disabled: $parent.ChallengeDisabled() }"
+                                                    class="challenger game-list-button">
+                                                Challenge
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <input type="hidden"
+                                           data-bind="value: ConnectionId" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="width: 100%; text-align: center; font-size: 20px">
+                    Player Turn:
+                    <label data-bind="text: CurrentPlayer()"></label>
+                </div>
+            }
+            else
+            {
+
+            }
+        }
+    </section>
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/signalr")
+        @Scripts.Render("~/bundles/ko")
+        <script src="~/signalr/hubs"></script>
+        <script type="text/javascript">
+            clientId = '@User.Identity.Name';
+        </script>
+        <script src="~/Scripts/custom/tictactoe-signalr.js"></script>
+    }
